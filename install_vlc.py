@@ -79,7 +79,15 @@ def save_installer(installer_data):
     """
     # TODO: Step 4
     # Hint: See example code in lab instructions entitled "Downloading a Binary File"
-    return
+    temp_dir = os.getenv("TEMP")
+    installer_path = os.path.join(temp_dir, 'vlc-3.0.20-win64.exe')
+    try:
+        with open(installer_path, 'wb') as file:
+            file.write(installer_data)
+        return installer_path
+    except IOError as e:
+        print(f"Error saving installer: {e}")
+        return None
 
 def run_installer(installer_path):
     """Silently runs the VLC installer.
