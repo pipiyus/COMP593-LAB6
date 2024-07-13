@@ -111,8 +111,10 @@ def delete_installer(installer_path):
     Args:
         installer_path (str): Full path of the VLC installer file
     """
-    
-    return
+    try:
+        os.remove(installer_path)
+    except OSError as e:
+        print(f"Error deleting installer: {e}")
 
 if __name__ == '__main__':
     main()
